@@ -11,7 +11,21 @@ class ProductList(generic.ListView):
         # self.productWithVariantPrice = ProductVariantPrice.objects.filter(product=[i for i in self.product])
         # import pdb;pdb.set_trace()
         self.productVariantPrice = ProductVariantPrice.objects.all()
-        self.product_variantlist = ProductVariant.objects.all().values_list('variant_title')
+
+        #varient_group start
+        # self.product_variantlist = ProductVariant.objects.all().values_list('variant_title')
+        self.variant = Variant.objects.all()
+        self.product_variantlist = ProductVariant.objects.all()
+        for i in self.variant:
+            self.varient_title_name = []
+            for j in self.product_variantlist:
+                if i == j.variant:
+                    self.varient_title_name.append(j)
+                    print(i.title)
+            i.__dict__.update({'varient_type':self.varient_title_name})
+        import pdb;pdb.set_trace()
+        
+        #varient_group end
         # product_list = {}
 
         for i in self.product:
@@ -109,7 +123,8 @@ class ProductList(generic.ListView):
         
         # import pdb;pdb.set_trace()
 
-        context['product_variantlist'] = list(set(self.product_variantlist))
+        # context['product_variantlist'] = list(set(self.product_variantlist))
+        context['product_variantlist'] = self.product_variantlist
         # import pdb;pdb.set_trace()
         context['product_list'] = self.product
         return context

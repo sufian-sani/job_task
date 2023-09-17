@@ -19,8 +19,12 @@
                     <select name="variant" id="" class="form-control">
                         <option value="" selected>Choose here</option>
                         {% for i in product_variantlist %}
-                        <option>{{i.0}}</option>
+                        <optgroup label="{{i.variant_title}}">
+                            <option value="volvo">Volvo</option>
+                        </optgroup>
                         {% endfor %}
+                        
+                        <option></option>
 
                     </select>
                 </div>
