@@ -18,9 +18,11 @@
                 <div class="col-md-2">
                     <select name="variant" id="" class="form-control">
                         <option value="" selected>Choose here</option>
-                        {% for i in product_variantlist %}
-                        <optgroup label="{{i.variant_title}}">
-                            <option value="volvo">Volvo</option>
+                        {% for i,j in product_variantlist.items %}
+                        <optgroup label="{{i}}">
+                            {% for ls in j %}
+                            <option value="{{ls}}">{{ls}}</option>
+                            {% endfor %}
                         </optgroup>
                         {% endfor %}
                         
